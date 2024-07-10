@@ -2,6 +2,7 @@ import React ,{useState}from 'react'
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 function Navbar() {
 const[isDropdown ,setIsDropdown]=useState(false)
 function toggleDown(){
@@ -14,18 +15,18 @@ function toggleDown(){
           <li>
             <a href="#">Home</a>
           </li>
-          <li>
+          <li className="navbar-categories">
          Categories
             <FaCaretDown onClick={toggleDown}/>
             { isDropdown &&(<ul className="dropdown">
               <li><a href="#fruits">Fruits</a></li>
               <li><a href="#vegetables">Vegetables</a></li>
-              <li><a href="#meats">Meats</a></li>
+              
               <li><a href="#grains">Grains</a></li>
             </ul>)}
           </li>
           <li>
-            <a href="#about">About</a>
+          <Link to="/about" >About</Link>
           </li>
           <li>
             <a href="#contact">Contact</a>
