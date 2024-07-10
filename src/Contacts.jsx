@@ -1,74 +1,77 @@
-//Importing Instagram icon from react-icons/fa library
-import { FaInstagramSquare } from "react-icons/fa";
-// Importing Facebook icon from react-icons/fa library
-import { FaFacebookSquare } from "react-icons/fa";
-//Import BiLogoTelegram icon from react-icons/ai library
+import React, { useState } from "react";
+import { FaInstagramSquare, FaFacebookSquare } from "react-icons/fa";
 import { BiLogoTelegram } from "react-icons/bi";
-// Importing TikTok icon from react-icons/ai library
 import { AiFillTikTok } from "react-icons/ai";
 
-// Contact component definition
 const Contact = () => {
- 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  
   return (
-    // Contact card container
     <div className="contact-card">
-      {/* Contact Us heading */ }
       <h1 id="contact">Contact Us</h1>
-      {/* Contact form section */}
       <div className="contact-form">
-        {/* Contact form heading */}
         <h2>Contact Form</h2>
-        {/* Contact form */}
-        <form>
-          {/* Name input field */}
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
-          {/* Email input field */}
           <div>
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
           </div>
-          {/* Message input field */}
           <div>
             <label htmlFor="message">Message:</label>
-            <textarea id="message" name="message" required />
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
+            {errors.message && <p className="error">{errors.message}</p>}
           </div>
-          {/* Submit button */}
           <button type="submit">Submit</button>
         </form>
       </div>
-    
-        {/* Follow Us heading */}
-        <h2>Follow Us</h2>
-        {/* Social media links */}
-        <div className="social-media-links">
-          {/* Instagram link */}
-          <a href="https://www.instagram.com/your_username" target="_blank" rel="noopener noreferrer">
-            {/* Instagram icon */}
-            <FaInstagramSquare />
-          </a>
-          {/* Facebook link */}
-          <a href="https://www.facebook.com/your_username" target="_blank" rel="noopener noreferrer">
-            {/* Facebook icon */}
-            <FaFacebookSquare />
-          </a>
-          {/* Telegram link */}
-          <a href="https://t.me/your_username" target="_blank" rel="noopener noreferrer">
-            {/* Telegram icon */}
-            <BiLogoTelegram />
-          </a>
-          {/* TikTok link */}
-          <a href="https://www.tiktok.com/@your_username" target="_blank" rel="noopener noreferrer">
-            {/* TikTok icon */}
-            <AiFillTikTok />
-          </a>
-        </div>
-      </div>    
-  );        
+      <h2>Follow Us</h2>
+      <div className="social-media-links">
+        <a href="https://www.instagram.com/your_username" target="_blank" rel="noopener noreferrer">
+          <FaInstagramSquare />
+        </a>
+        <a href="https://www.facebook.com/your_username" target="_blank" rel="noopener noreferrer">
+          <FaFacebookSquare />
+        </a>
+        <a href="https://t.me/your_username" target="_blank" rel="noopener noreferrer">
+          <BiLogoTelegram />
+        </a>
+        <a href="https://www.tiktok.com/@your_username" target="_blank" rel="noopener noreferrer">
+          <AiFillTikTok />
+        </a>
+      </div>
+    </div>
+  );
 };
 
-// Exporting Contact component
 export default Contact;
+
