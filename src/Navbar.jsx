@@ -2,6 +2,7 @@ import React ,{useState}from 'react'
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 function Navbar() {
 const[isDropdown ,setIsDropdown]=useState(false)
 function toggleDown(){
@@ -25,7 +26,7 @@ function toggleDown(){
             </ul>)}
           </li>
           <li>
-            <a href="#about">About</a>
+          <Link to="/about" >About</Link>
           </li>
           <li>
             <a href="#contact">Contact</a>
