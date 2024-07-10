@@ -18,7 +18,7 @@ function App() {
     
     <Navbar/>
     <About/>
-    <Contact/>
+    <Contact/> 
     </>
   );
 }
