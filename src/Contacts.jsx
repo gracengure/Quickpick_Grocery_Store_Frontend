@@ -10,6 +10,51 @@ const Contact = () => {
     message: ""
   });
   
+  const [errors, setErrors] = useState({});
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  
+  const validate = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+    
+    setErrors(newErrors);
+    
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (validate()) {
+      console.log("Form data:", formData);
+      alert("Form submitted successfully!");
+      
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+      setErrors({});
+    }
+  };
+  
   return (
     <div className="contact-card">
       <h1 id="contact">Contact Us</h1>
