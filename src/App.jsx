@@ -2,7 +2,7 @@
 import Home from "./Home"
 import Navbar from "./Navbar"
 import Contact from "./Contact"
-import About from " />About"
+import About from "./About";
 function App() {
   
 
@@ -10,9 +10,12 @@ function App() {
     <>
     <Navbar/>
     <Home/>
+<<<<<<<<< Temporary merge branch 1
+    <Contact/> 
+=========
     <Contact/>
     <About/>
-    <Contact/> 
+>>>>>>>>> Temporary merge branch 2
     </>
   )
 }
