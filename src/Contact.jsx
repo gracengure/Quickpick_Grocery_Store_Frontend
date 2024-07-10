@@ -2,76 +2,47 @@ import React, { useState } from "react";
 import { FaInstagramSquare, FaFacebookSquare } from "react-icons/fa";
 import { BiLogoTelegram } from "react-icons/bi";
 import { AiFillTikTok } from "react-icons/ai";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
+  const formSchema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    message: yup.string().required("Message is required"),
   });
-  
-  const [errors, setErrors] = useState({});
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  
-  const validate = () => {
-    const newErrors = {};
-    
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-    
-    setErrors(newErrors);
-    
-    return Object.keys(newErrors).length === 0;
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (validate()) {
-      console.log("Form data:", formData);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      message: ""
+    },
+    validationSchema: formSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log("Form data:", values);
       alert("Form submitted successfully!");
-      
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      });
-      setErrors({});
-    }
-  };
-  
+      resetForm();
+    },
+  });
+
   return (
     <div className="contact-card">
       <h1 id="contact">Contact Us</h1>
       <div className="contact-form">
         <h2>Contact Form</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div>
             <label htmlFor="name">Name:</label>
             <input
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
+              value={formik.values.name}
+              onChange={formik.handleChange}
               required
             />
-            {errors.name && <p className="error">{errors.name}</p>}
+            {formik.errors.name && <p className="error">{formik.errors.name}</p>}
           </div>
           <div>
             <label htmlFor="email">Email:</label>
@@ -79,22 +50,22 @@ const Contact = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={formik.values.email}
+              onChange={formik.handleChange}
               required
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            {formik.errors.email && <p className="error">{formik.errors.email}</p>}
           </div>
           <div>
             <label htmlFor="message">Message:</label>
             <textarea
               id="message"
               name="message"
-              value={formData.message}
-              onChange={handleChange}
+              value={formik.values.message}
+              onChange={formik.handleChange}
               required
             />
-            {errors.message && <p className="error">{errors.message}</p>}
+            {formik.errors.message && <p className="error">{formik.errors.message}</p>}
           </div>
           <button type="submit">Submit</button>
         </form>
