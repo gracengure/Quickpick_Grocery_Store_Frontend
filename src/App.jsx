@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from "react";
+import React ,{useState} from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
