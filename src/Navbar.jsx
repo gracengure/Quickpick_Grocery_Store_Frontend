@@ -14,13 +14,13 @@ function toggleDown(){
           <li>
             <a href="#">Home</a>
           </li>
-          <li>
+          <li className="navbar-categories">
          Categories
             <FaCaretDown onClick={toggleDown}/>
             { isDropdown &&(<ul className="dropdown">
               <li><a href="#fruits">Fruits</a></li>
               <li><a href="#vegetables">Vegetables</a></li>
-              <li><a href="#meats">Meats</a></li>
+              
               <li><a href="#grains">Grains</a></li>
             </ul>)}
           </li>
