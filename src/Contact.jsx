@@ -12,7 +12,14 @@ const Contact = () => {
       .required("Name is required")
       .matches(/^[A-Za-z ]*$/, "Name can only contain letters and spaces"),
     email: yup.string().email("Invalid email").required("Email is required"),
-    message: yup.string().required("Message is required"),
+    message: yup
+    .string()
+    .required("Message is required")
+    .matches(
+       /^[A-Za-z ]*$/,
+      "Message should start with a capital letter"
+    ),
+
   });
 
   const formik = useFormik({
