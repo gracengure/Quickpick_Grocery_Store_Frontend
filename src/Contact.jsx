@@ -7,7 +7,10 @@ import * as yup from "yup";
 
 const Contact = () => {
   const formSchema = yup.object().shape({
-    name: yup.string().required("Name is required"),
+    name: yup
+      .string()
+      .required("Name is required")
+      .matches(/^[A-Za-z ]*$/, "Name can only contain letters and spaces"),
     email: yup.string().email("Invalid email").required("Email is required"),
     message: yup.string().required("Message is required"),
   });
