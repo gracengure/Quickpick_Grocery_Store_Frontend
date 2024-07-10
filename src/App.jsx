@@ -1,6 +1,6 @@
 
 import Home from "./Home"
-import Navbar from "./Navbar"
+
 function App() {
   
 
@@ -8,6 +8,7 @@ function App() {
     <>
     <Navbar/>
     <Home/>
+    <Contact/>
     </>
   )
 }
