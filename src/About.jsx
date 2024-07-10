@@ -7,7 +7,7 @@ const About = () => {
             <main className="main">
                 <section>
                     <h1>About Us</h1>
-                    <p>Welcome to our website! We are dedicated to providing the best service possible. Our team is passionate about our work and we strive to exceed your expectations.</p>
+                    <p>Quickpick Grocery is a trusted destination for high-quality groceries, offering a diverse range of products including fresh produce, organic items, and everyday essentials. Our commitment lies in providing convenience and satisfaction to our customers, ensuring they always find what they need with ease and at competitive prices. Established with a passion for excellence, Quickpick Grocery strives to enhance the shopping experience through superior service and a dedication to meeting the diverse needs of our community.</p>
                     <p>Our mission is to deliver high-quality products and services that meet the needs of our customers. We value integrity, excellence, and innovation in everything we do.</p>
                     <h2>Our Team</h2>
                     <p>Our team consists of experienced professionals who are experts in their respective fields. We work together to achieve our common goals and deliver outstanding results.</p>
