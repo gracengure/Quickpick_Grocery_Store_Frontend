@@ -10,12 +10,8 @@ function App() {
     <>
     <Navbar/>
     <Home/>
-<<<<<<<<< Temporary merge branch 1
     <Contact/> 
-=========
-    <Contact/>
     <About/>
->>>>>>>>> Temporary merge branch 2
     </>
   )
 }
