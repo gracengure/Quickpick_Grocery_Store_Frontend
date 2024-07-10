@@ -1,11 +1,46 @@
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 :root {
-  background-color: white;
+  background-color: rgb(59, 106, 6);
 }
-.navbar{
-  
+/* Styles for the navigation bar */
+.home-container {
+  height: 800px;
+  width: 100%;
+  background-image: url('https://i.pinimg.com/564x/2f/15/52/2f1552874be63215dd85d9d54dad26dc.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(18, 134, 18, 0.7); 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.navbar a {
+  color: rgb(207, 252, 198);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.home-image {
+  display: none;
 }
