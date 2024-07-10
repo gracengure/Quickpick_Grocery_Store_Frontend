@@ -7,11 +7,11 @@
 :root {
   background-color: rgb(59, 106, 6);
 }
-/* Styles for the navigation bar */
 .home-container {
-  height: 800px;
+  position: relative;
+  height: 100vh;
   width: 100%;
-  background-image: url('https://i.pinimg.com/564x/2f/15/52/2f1552874be63215dd85d9d54dad26dc.jpg');
+  background-image: url('https://images.unsplash.com/photo-1660583341011-bf2752db6cd9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
 }
@@ -24,25 +24,48 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color:rgb( 18,134,18,0.7); 
+  background-color: rgba(18, 134, 18, 0.7); 
   list-style: none;
   padding: 0;
   margin: 0;
+  z-index: 2; 
 }
 
+.navbar li {
+  position: relative;
+  display: inline-block;
+  margin: 0 15px;
+}
 
 .navbar a {
-  color: rgb(207,252,198);
+  color: rgb(207, 252, 198);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .navbar a:hover {
   text-decoration: underline;
 }
 
-.home-image {
+.navbar .dropdown {
   display: none;
+  position: absolute;
+  background-color: rgba(9, 9, 9, 0.7);
+  min-width: 160px;
+  z-index: 3;
+}
+
+.navbar .dropdown a {
+  display: block;
+  padding: 10px 20px;
+}
+
+.navbar li:hover .dropdown {
+  display: block;
+}
+
+.home-image {
+  display: none; /* Hide the image element since we're using it as a background */
 }
 
 
@@ -123,7 +146,7 @@
 
 .social-media-links > * {
   font-size: 30px;
-  color: #007bff;
+  color: #5dfd3e;
   transition: color 0.3s;
 }
 
