@@ -10,12 +10,9 @@ function App() {
     <>
     <Navbar/>
     <Home/>
-<<<<<<< HEAD
     <Contact/>
     <About/>
-=======
     <Contact/> 
->>>>>>> origin/master
     </>
   )
 }
