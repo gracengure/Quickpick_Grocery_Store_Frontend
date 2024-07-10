@@ -16,7 +16,7 @@ const Contact = () => {
     .string()
     .required("Message is required")
     .matches(
-       /^[A-Za-z ]*$/,
+       /^[A-Z].*$/,
       "Message should start with a capital letter"
     ),
 
