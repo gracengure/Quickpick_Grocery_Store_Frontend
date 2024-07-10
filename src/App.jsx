@@ -6,6 +6,12 @@ import SearchBar from "./components/SearchBar";
 import Contact from "./Contact"
 import About from "./About";
 
+
+
+
+
+  
+
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -14,6 +20,7 @@ function App() {
   };
   return (
     <>
+    <Navbar/> 
     <Home/>
     
     <Navbar/>
