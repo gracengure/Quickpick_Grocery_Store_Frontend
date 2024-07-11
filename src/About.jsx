@@ -14,7 +14,7 @@ const About = () => {
                         <h2>Our Team</h2>
                         <p>Our team consists of experienced professionals who are experts in their respective fields. We work together to achieve our common goals and deliver outstanding results.</p>
                         <h2>Our Story</h2>
-                        <p>Founded in [Year], we have grown from a small startup to a leading company in our industry. Our journey has been driven by our commitment to excellence and our passion for what we do.</p>
+                        <p>Founded in 2008, we have grown from a small startup to a leading company in our industry. Our journey has been driven by our commitment to excellence and our passion for what we do.</p>
                     </div>
                 </div>
             </main>
