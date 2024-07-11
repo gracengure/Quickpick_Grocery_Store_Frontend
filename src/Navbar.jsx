@@ -5,10 +5,13 @@ import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 function Navbar() {
 const[isDropdown ,setIsDropdown]=useState(false)
+
 const[isUserDropdown,setIsUserDropdown]=useState(false)
 function toggleDown(){
   setIsDropdown(!isDropdown)
+
 }
+ 
 function toggleUserDown(){
   setIsUserDropdown(!isUserDropdown)
 }
@@ -23,10 +26,9 @@ function toggleUserDown(){
          Categories
             <FaCaretDown onClick={toggleDown}/>
             { isDropdown &&(<ul className="dropdown">
-              <li><a href="#fruits">Fruits</a></li>
-              <li><a href="#vegetables">Vegetables</a></li>
-              
-              <li><a href="#grains">Grains</a></li>
+            <li><Link to="/products/fruits">Fruits</Link></li>
+        <li><Link to="/products/vegetables">Vegetables</Link></li>
+        <li><Link to="/products/grains">Grains</Link></li>
             </ul>)}
           </li>
           <li>
@@ -51,7 +53,10 @@ function toggleUserDown(){
           </li>
         </ul>
       </nav>
-      </div>)}
+    </div>
+  )
+  }
+     
 
 
 export default Navbar
