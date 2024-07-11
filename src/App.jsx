@@ -3,9 +3,9 @@ import React ,{useState} from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
-import Contact from "./Contact"
+import Contact from "./Contact";
 import About from "./About";
-import UserProfile from "./User_profile"
+import UserProfile from "./UserProfile";
 
 
 
@@ -22,9 +22,7 @@ function App() {
     <>
     <Navbar/> 
     <Home/>
-    
-    <Navbar/>
-    <User Profile/>
+    <UserProfile/>
     <About/>
     <Contact/> 
     </>
