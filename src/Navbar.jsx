@@ -22,10 +22,9 @@ function toggleDown(){
          Categories
             <FaCaretDown onClick={toggleDown}/>
             { isDropdown &&(<ul className="dropdown">
-              <li><a href="#fruits">Fruits</a></li>
-              <li><a href="#vegetables">Vegetables</a></li>
-              
-              <li><a href="#grains">Grains</a></li>
+            <li><Link to="/products/fruits">Fruits</Link></li>
+        <li><Link to="/products/vegetables">Vegetables</Link></li>
+        <li><Link to="/products/grains">Grains</Link></li>
             </ul>)}
           </li>
           <li>
