@@ -41,15 +41,17 @@ const Products = () => {
   }
 
   return (
-    <div className="products-container">
+    <div className="product-container">
       {products.map(product => (
         <div key={product.id} className="product-card">
          
-          <h3>{product.name}</h3>
-          <img src={product.image_url} alt={product.name} /> <img src={product.image_url} alt={product.name} />
+          <h3 className='product-name'>{product.name}</h3>
+          <img  className="product-img"src={product.image_url} alt={product.name} /> 
+          <div className='product-details'>
           <p>{product.category}</p>
           <p>${product.price}</p>
           <p>In Stock: {product.stock_quantity}</p>
+          </div>
         </div>
       ))}
     </div>
