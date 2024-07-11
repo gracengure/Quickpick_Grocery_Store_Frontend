@@ -7,7 +7,7 @@ function Home() {
   return (
       <div className="home-background">
         {/* Additional content can go here */}
-        
+        <input type="text" placeholder='search for food'/>
       </div>
   );
 }

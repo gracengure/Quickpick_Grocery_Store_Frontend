@@ -3,7 +3,6 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import Logout from './components/Logout';
 function Navbar() {
 const[isDropdown ,setIsDropdown]=useState(false)
 const[isUserDropdown,setIsUserDropdown]=useState(false)
