@@ -1,11 +1,15 @@
-import React from 'react'
+import React ,{ useState }from 'react';
+
+
 
 function Home() {
+ 
   return (
-    <div>
-      {/* background image  */}
-    </div>
-  )
+      <div className="home-background">
+        {/* Additional content can go here */}
+        
+      </div>
+  );
 }
 
-export default Home
+export default Home;
