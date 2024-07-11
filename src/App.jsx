@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
 import Contact from "./Contact"
 import About from "./About";
+import Products from "./components/Products";
 
 
 
@@ -20,10 +21,10 @@ function App() {
   };
   return (
     <>
-    <Navbar/> 
-    <Home/>
     
+    <Home/>
     <Navbar/>
+    <Products/>
     <About/>
     <Contact/> 
     </>

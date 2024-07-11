@@ -5,9 +5,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 function Navbar() {
 const[isDropdown ,setIsDropdown]=useState(false)
+
 function toggleDown(){
   setIsDropdown(!isDropdown)
+
 }
+ 
   return (
     <div className="home-container">
      <nav>
@@ -41,6 +44,6 @@ function toggleDown(){
       </nav>
     </div>
   )
-}
+  }
 
 export default Navbar
