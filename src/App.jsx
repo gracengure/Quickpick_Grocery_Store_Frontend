@@ -22,8 +22,6 @@ function App() {
     <>
     <Navbar/> 
     <Home/>
-    
-    <Navbar/>
     <About/>
     <Contact/> 
     </>
