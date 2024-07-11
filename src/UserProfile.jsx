@@ -1,8 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const UserProfile = () => {
     const formik = useFormik({
@@ -39,6 +37,7 @@ const UserProfile = () => {
                         <h2>User Profile</h2>
                         <label>
                             Username:
+                            <br></br>
                             <input
                                 type="text"
                                 name="username"
@@ -52,6 +51,7 @@ const UserProfile = () => {
                         </label>
                         <label>
                             Email:
+                            <br></br>
                             <input
                                 type="email"
                                 name="email"
@@ -65,6 +65,7 @@ const UserProfile = () => {
                         </label>
                         <label>
                             Password:
+                            <br></br>
                             <input
                                 type="password"
                                 name="password"
@@ -78,6 +79,7 @@ const UserProfile = () => {
                         </label>
                         <label>
                             Repeat Password:
+                            <br></br>
                             <input
                                 type="password"
                                 name="repeatPassword"
@@ -94,34 +96,11 @@ const UserProfile = () => {
                 </div>
                 <div className="profile-details-container">
                     <div className="profile-image-container">
-                        <img src="https://via.placeholder.com/150" alt="Profile" className="profile-image" />
+                        <img src="https://i.pinimg.com/564x/20/05/e2/2005e27a39fa5f6d97b2e0a95233b2be.jpg" alt="Profile" className="profile-image" />
                     </div>
-                    <div className="profile-social-media">
-                        <h3>Social Media</h3>
-                        <div className="social-icons">
-                            <div>
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faTwitter} size="2x" />
-                                </a>
-                                <label>Add Twitter</label>
-                            </div>
-                            <div>
-                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faFacebook} size="2x" />
-                                </a>
-                                <label>Add Facebook</label>
-                            </div>
-                            <div>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
-                                </a>
-                                <label>Add LinkedIn</label>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
     );
 };
 

@@ -5,9 +5,6 @@ import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
 import Contact from "./Contact";
 import About from "./About";
-import UserProfile from "./UserProfile";
-
-
 
 
   
@@ -22,7 +19,6 @@ function App() {
     <>
     <Navbar/> 
     <Home/>
-    <UserProfile/>
     <About/>
     <Contact/> 
     </>
