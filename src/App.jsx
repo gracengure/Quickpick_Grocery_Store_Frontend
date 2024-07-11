@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
 import Contact from "./Contact"
 import About from "./About";
-
+import UserProfile from "./User_profile"
 
 
 
@@ -24,6 +24,7 @@ function App() {
     <Home/>
     
     <Navbar/>
+    <User Profile/>
     <About/>
     <Contact/> 
     </>
