@@ -45,7 +45,7 @@ function toggleUserDown(){
             <FaUserAlt onClick={toggleUserDown} />
             {isUserDropdown && (
               <ul className="dropdown">
-                <li><a href="#userprofile">User profile</a></li>
+                <li><Link to='/userprofile'>User profile</Link></li>
                 <li><Link to='/login'>Login</Link></li>
                 <li><Link to='/signup'>Sign-up</Link></li>
                 <li><a href="#sign-out">Sign-out</a></li>
