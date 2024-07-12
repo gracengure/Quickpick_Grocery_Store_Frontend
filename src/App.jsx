@@ -15,7 +15,10 @@ function App() {
   return (
     <>
       <Home />
-      <SearchBar />
+      <div className="background-image">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+
       <Navbar />
       <About />
       <Contact />
