@@ -22,15 +22,6 @@ body {
   width: 100%;
   padding-top: 80px;
 }
-.search-bar input {
-  width: 400px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out,
-    border-radius 0.4s ease-in-out;
-}
 
 .search-bar input:focus {
   width: 400px;
