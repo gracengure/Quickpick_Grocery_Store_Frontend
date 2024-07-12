@@ -1,6 +1,7 @@
 // src/App.jsx
-// src/App.jsx
+
 import React ,{useState ,useEffect} from "react";
+import React, { useState } from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
@@ -45,8 +46,14 @@ function App() {
       <Products addToCart={addToCart} />
     <About/>
     <Contact/> 
+      <Home />
+      <div className="background-image">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+
+      
     </>
   );
 }
 
-export default App
+export default App;
