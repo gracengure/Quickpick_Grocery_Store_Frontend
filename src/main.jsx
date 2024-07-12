@@ -39,6 +39,7 @@ const router = createBrowserRouter([
     path: "/products/:category",
     element: <CategoryPage />,
   }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

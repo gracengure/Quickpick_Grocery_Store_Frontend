@@ -4,7 +4,7 @@ import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Logout from './components/Logout';
-function Navbar() {
+function Navbar({cartCount}) {
 const[isDropdown ,setIsDropdown]=useState(false)
 
 const[isUserDropdown,setIsUserDropdown]=useState(false)
@@ -40,6 +40,8 @@ function toggleUserDown(){
           </li>
           <li>
             <a href="#cart"><FaCartShopping /></a>
+            <span className="cart-count-badge">{cartCount}</span>
+            
           </li>
           <li className="navbar-user">
             <FaUserAlt onClick={toggleUserDown} />
