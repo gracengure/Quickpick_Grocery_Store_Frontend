@@ -15,7 +15,10 @@ const Products = () => {
         return response.json();
       })
       .then(data => setProducts(data))
-      .catch(error => setError(error.message));
+      .catch(error => {
+        console.error('Fetch error:', error);
+        setError(error.message);
+      });
   }, []);
 
   if (error) {
