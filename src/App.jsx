@@ -1,16 +1,10 @@
 // src/App.jsx
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import SearchBar from "./components/SearchBar";
-import Contact from "./Contact"
+import Contact from "./Contact";
 import About from "./About";
-
-
-
-
-
-  
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,14 +14,13 @@ function App() {
   };
   return (
     <>
-    <Navbar/> 
-    <Home/>
-    
-    <Navbar/>
-    <About/>
-    <Contact/> 
+      <Home />
+      <SearchBar />
+      <Navbar />
+      <About />
+      <Contact />
     </>
   );
 }
 
-export default App
+export default App;
