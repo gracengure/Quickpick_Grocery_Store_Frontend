@@ -1,11 +1,9 @@
-
-// Products.jsx
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 
-const Products = ({addToCart}) => {
+const Products = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
-  
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/products')
@@ -22,18 +20,18 @@ const Products = ({addToCart}) => {
       });
   }, []);
 
-  
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   return (
     <div className="product-container">
-      
       {products.map(product => (
         <div key={product.id} className="product-card">
           <h3 className='product-name'>{product.name}</h3>
-          <img className="product-img" src={product.image_url} alt={product.name} />
+          <Link to={`/product/${product.id}`}> 
+            <img className="product-img" src={product.image_url} alt={product.name} />
+          </Link>
           <div className='product-details'>
             <p>{product.category}</p>
             <p>${product.price}</p>
