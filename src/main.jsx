@@ -7,6 +7,8 @@ import About from "./About.jsx";
 import Login from "./Login.jsx"
 import Signup from "./Signup.jsx"
 import UserProfile from "./UserProfile.jsx";
+import Products from "./components/Products.jsx";
+import CategoryPage from "./components/CatergoryPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -29,7 +31,15 @@ const router = createBrowserRouter([
   {
     path: "/userprofile",
     element: <UserProfile />,
+  },{
+    path: "/products",
+    element: <Products />,
   },
+  {
+    path: "/products/:category",
+    element: <CategoryPage />,
+  }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
