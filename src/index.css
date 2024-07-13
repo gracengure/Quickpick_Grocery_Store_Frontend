@@ -445,6 +445,7 @@ button[type="submit"] {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .property-spec {
@@ -481,6 +482,7 @@ button[type="submit"] {
 .go-back-btn:hover {
   background-color: rgb(146, 219, 63);
 }
-
-
+.product-image{
+  height: 400px;
+}
 

@@ -27,7 +27,7 @@ function ProductSpecs() {
   return (
     <div className="property-specs-container">
       <h2 className="product-name">{product.name}</h2>
-      <img src={product.image_url} alt={product.name} className="product-img" />
+      <img src={product.image_url} alt={product.name} className="product-image" />
       <div className="product-details">
         <div className="property-spec">
           <span className="spec-label">Description:</span>
