@@ -11,7 +11,6 @@ import Products from "./components/Products.jsx";
 import CategoryPage from "./components/CatergoryPage.jsx";
 import ProductSpecs from "./components/ProductSpecs.jsx";
 
-
 const router = createBrowserRouter([
   {
     path: "*",
