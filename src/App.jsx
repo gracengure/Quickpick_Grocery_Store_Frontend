@@ -1,4 +1,3 @@
-// src/App.jsx
 
 import React, { useState, useEffect } from "react";
 import Home from "./Home";
@@ -10,7 +9,6 @@ import Products from "./components/Products";
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const addToCart = (product) => {
     const existingItem = cartItems.find(item => item.id === product.id);
@@ -24,10 +22,6 @@ function App() {
     }
   };
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-
   // Update cart count whenever cart items change
   useEffect(() => {
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -36,10 +30,12 @@ function App() {
 
   return (
     <>
-      <Navbar cartCount={cartCount} />
+    
+    <Home/>
+    <Navbar cartCount={cartCount} />
       <Products addToCart={addToCart} />
-      <About />
-      <Contact />
+    <About/>
+    <Contact/> 
     </>
   );
 }
