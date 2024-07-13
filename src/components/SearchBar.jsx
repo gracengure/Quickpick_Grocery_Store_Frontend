@@ -1,28 +1,29 @@
 import React, { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 
-const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
+const SearchBar = ({ products, setFilteredProducts }) => {
+  const [categoryCriteria, setCategoryCriteria] = useState("");
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
+  const handleCategoryChange = (e) => {
+    const { value } = e.target;
+    setCategoryCriteria(value); // Update category criteria based on input value
+    console.log("Category Criteria:", value); // Log category criteria for debugging
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/search?q=${query}`
-      );
-      setResults(response.data);
-      onSearch(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    console.log("Submitting with Category Criteria:", categoryCriteria); // Log category criteria when submitting
+    const filteredProducts = products.filter((product) => {
+      // Convert both product category and criteria to lowercase for case-insensitive comparison
+      const productCategory = product.category.toLowerCase();
+      const criteria = categoryCriteria.toLowerCase();
+      // Check if product category includes criteria or if criteria is empty
+      const categoryMatch = productCategory.includes(criteria) || criteria === "";
+      return categoryMatch;
+    });
+    console.log("Filtered Products:", filteredProducts); // Log filtered products for debugging
+    setFilteredProducts(filteredProducts); // Update filtered products state
   };
 
   return (
@@ -30,22 +31,17 @@ const SearchBar = ({ onSearch }) => {
       <form className="search-bar" onSubmit={handleSubmit}>
         <input
           type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Start by searching for any product..."
+          value={categoryCriteria}
+          onChange={handleCategoryChange}
+          placeholder="Search for products by category..."
         />
         <button type="submit">
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>
-      {}
-      <div className="results">
-        {results.map((item, index) => (
-          <div key={index}>{item.name}</div>
-        ))}
-      </div>
     </div>
   );
 };
 
 export default SearchBar;
+ 
