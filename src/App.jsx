@@ -1,23 +1,13 @@
 // src/App.jsx
 
-import React ,{useState ,useEffect} from "react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
-import SearchBar from "./components/SearchBar";
 import Contact from "./Contact";
 import About from "./About";
 import Products from "./components/Products";
 
-
-  
-
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
 
@@ -38,6 +28,7 @@ function App() {
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
     setCartCount(totalItems);
   }, [cartItems]);
+
   return (
     <>
     
@@ -46,12 +37,6 @@ function App() {
       <Products addToCart={addToCart} />
     <About/>
     <Contact/> 
-      <Home />
-      <div className="background-image">
-        <SearchBar onSearch={handleSearch} />
-      </div>
-
-      
     </>
   );
 }

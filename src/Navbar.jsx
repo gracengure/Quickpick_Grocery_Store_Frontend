@@ -17,7 +17,7 @@ function toggleUserDown(){
   setIsUserDropdown(!isUserDropdown)
 }
   return (
-    <div className="home-container">
+    
      <nav>
         <ul className="navbar">
           <li>
@@ -56,7 +56,7 @@ function toggleUserDown(){
           </li>
         </ul>
       </nav>
-    </div>
+   
   )
   }
      
