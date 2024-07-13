@@ -1,13 +1,12 @@
 import React ,{ useState }from 'react';
-
-
-
+import Navbar from './Navbar';
 function Home() {
  
   return (
-      <div className="home-background">
-        {/* Additional content can go here */}
-        <input type="text" placeholder='search for food'/>
+      <div className="home-container">
+        <Navbar/>
+        <div className='search'>
+        </div>
       </div>
   );
 }
