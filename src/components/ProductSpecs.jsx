@@ -15,7 +15,22 @@ function ProductSpecs() {
         console.error("Error fetching product details:", error)
       );
   }, [productId]);
-
+  const handleDelete = () => {
+    fetch(`http://127.0.0.1:5000/products/${productId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Product deleted successfully");
+          window.location.href = "/"; // Redirect to home page or another appropriate page
+        } else {
+          throw new Error("Failed to delete product");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+      });
+  };
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -49,6 +64,9 @@ function ProductSpecs() {
           <span className="spec-label">Supplier:</span>
           <span className="spec-value">{product.supplier}</span>
         </div>
+        <button className="delete-btn" onClick={handleDelete}>
+          DELETE PRODUCT
+        </button>
         <button className="go-back-btn" onClick={goBack}>
           GO BACK
         </button>

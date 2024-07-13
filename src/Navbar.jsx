@@ -59,7 +59,4 @@ function toggleUserDown(){
    
   )
   }
-     
-
-
-export default Navbar
+  export  default Navbar

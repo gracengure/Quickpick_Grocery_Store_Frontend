@@ -486,3 +486,14 @@ button[type="submit"] {
   height: 400px;
 }
 
+.delete-btn{
+  background-color:red;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; 
+  margin-right: 20px;
+}

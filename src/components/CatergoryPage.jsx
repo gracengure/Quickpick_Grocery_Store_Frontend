@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function CategoryPage() {
+function CategoryPage({addToCart}) {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
 
@@ -26,6 +26,7 @@ function CategoryPage() {
           <p>{product.category}</p>
           <p>${product.price}</p>
           <p>In Stock: {product.stock_quantity}</p>
+          <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
         </div>
       ))}
