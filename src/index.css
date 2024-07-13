@@ -215,8 +215,8 @@
   flex-wrap: wrap; 
   justify-content: flex-start; 
   gap: 25px;
-  margin-left: 140px;
-  margin-right: 100px;
+  margin-left: 100px;
+  margin-right: 140px;
   
   
  }
@@ -404,4 +404,16 @@
   padding: 20px;
   box-sizing: border-box;
   align-items: center;
+}
+.cardBar {
+  width:px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  
+  left: 50%;
+}
+.create-product{
+  height: 50vh;
 }

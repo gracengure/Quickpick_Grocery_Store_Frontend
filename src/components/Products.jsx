@@ -28,6 +28,8 @@ const Products = ({addToCart}) => {
   }
 
   return (
+    <>
+    
     <div className="product-container">
       
       {products.map(product => (
@@ -42,7 +44,7 @@ const Products = ({addToCart}) => {
           </div>
         </div>
       ))}
-    </div>
+    </div></>
   );
 };
 
