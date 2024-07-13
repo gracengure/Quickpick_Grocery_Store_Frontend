@@ -44,7 +44,7 @@ function CreateProduct() {
       navigate("/");
 
       setName("");
-      setImage("")
+      setImage("");
       setPrice("");
       setCategory("");
       setStockQuantity("");
@@ -76,75 +76,63 @@ function CreateProduct() {
           <div className="cardBar">
             <h2>Create Product</h2>
             <form onSubmit={handleSubmit}>
-              <label>
-                Name:
-                <br />
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Image Url:
-                <br />
-                <input
-                  type="text"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </label>
-              <br></br>
-              <label>
-                Price:
-                <br />
-                <input
-                  type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Category:
-                <br />
-                <input
-                  type="text"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Stock Quantity:
-                <br />
-                <input
-                  type="number"
-                  value={stockQuantity}
-                  onChange={(e) => setStockQuantity(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Description:
-                <br />
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
-                Supplier:
-                <br />
-                <input
-                  type="text"
-                  value={supplier}
-                  onChange={(e) => setSupplier(e.target.value)}
-                />
-              </label>
-              <br />
+              <div className="form-group">
+                <label>
+                  Name:
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Image Url:
+                  <input
+                    type="text"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Price:
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Category:
+                  <input
+                    type="text"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Stock Quantity:
+                  <input
+                    type="number"
+                    value={stockQuantity}
+                    onChange={(e) => setStockQuantity(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Description:
+                  <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Supplier:
+                  <input
+                    type="text"
+                    value={supplier}
+                    onChange={(e) => setSupplier(e.target.value)}
+                  />
+                </label>
+              </div>
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -157,11 +145,9 @@ function CreateProduct() {
             <h2 className="product-name">{product.name}</h2>
             <img className="product-img" src={product.image_url} alt={product.name} />
             <div className="product-details">
-              
               <p>Category: {product.category}</p>
               <p>Price: ${product.price}</p>
               <p>Stock Quantity: {product.stock_quantity}</p>
-             
             </div>
           </div>
         ))}
