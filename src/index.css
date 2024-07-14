@@ -439,72 +439,67 @@ button[type="submit"] {
 }
 
 .property-specs-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 20px;
-  margin: 20px;
-  background-color: rgb(234, 237, 230);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, Helvetica, sans-serif;
+}
 
+.product-specs-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .property-spec {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.spec-label {
   font-weight: bold;
 }
 
-.property-spec:last-child {
-  border-bottom: none;
+.spec-value {
+  margin-left: 5px;
 }
 
-.property-spec .spec-label {
-  color: #333;
+.edit-btn, .delete-btn, .go-back-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.property-spec .spec-value {
-  color: #555;
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
 }
 
 .go-back-btn {
-  background-color: rgb(17, 228, 80);
+  background-color: #008CBA;
   color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px; 
-}
-
-.go-back-btn:hover {
-  background-color: rgb(146, 219, 63);
-}
-.product-image{
-  height: 400px;
-}
-
-.delete-btn{
-  background-color:red;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px; 
-  margin-right: 20px;
-}
-.edit-btn{
-  background-color:palevioletred;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px; 
-  margin-right: 20px;
 }
