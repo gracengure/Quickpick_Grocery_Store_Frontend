@@ -12,9 +12,9 @@ function Home() {
   return (
     <>
     <div className="home-container">
-      <div className='search'>
+      {/* <div className='search'>
         <SearchBar onSearch={handleSearch} />
-      </div>
+      </div> */}
           </div>
           <CreateProduct/>
     </>
