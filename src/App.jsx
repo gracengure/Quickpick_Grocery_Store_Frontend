@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Contact from "./Contact";
@@ -11,8 +12,14 @@ function App() {
   const [cartCount, setCartCount] = useState(0);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const userLoggedIn = localStorage.getItem('access_token') !== null;
+    setIsLoggedIn(userLoggedIn);
+
     fetch('http://127.0.0.1:5000/products')
       .then(response => {
         if (!response.ok) {
@@ -26,6 +33,7 @@ function App() {
       })
       .catch(error => {
         console.error('Fetch error:', error);
+        setError(error.message);
       });
   }, []);
 
@@ -68,12 +76,21 @@ function App() {
     setCartCount(totalItems);
   }, [cartItems]);
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <>
       <Home />
       <Navbar cartCount={cartCount} />
       <SearchBar products={products} handleSearch={handleSearch} />
-      <Products products={filteredProducts} addToCart={addToCart} />
+      <Products
+        products={filteredProducts}
+        addToCart={addToCart}
+        isLoggedIn={isLoggedIn}
+        navigate={navigate}
+      />
       <About />
       <Contact />
     </>
