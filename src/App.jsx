@@ -82,9 +82,9 @@ function App() {
 
   return (
     <>
-      <Home />
+      <Home  products={products} handleSearch={handleSearch}/>
       <Navbar cartCount={cartCount} />
-      <SearchBar products={products} handleSearch={handleSearch} />
+      
       <Products
         products={filteredProducts}
         addToCart={addToCart}
