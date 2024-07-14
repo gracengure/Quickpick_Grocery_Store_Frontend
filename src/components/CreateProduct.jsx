@@ -37,31 +37,34 @@ function CreateProduct() {
       description,
       supplier,
     };
-
+  
+    const token = localStorage.getItem('access_token');
+  
     try {
-      const response = await fetch("http://localhost:5000/products", {
+      const response = await fetch("http://127.0.0.1:5000/products", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to create product");
       }
-
+  
       console.log("Product created successfully");
       setProducts([...products, formData]);
       navigate("/");
-
+  
       // Clear form fields after submission
       clearFormFields();
     } catch (error) {
       console.error("Error creating product:", error.message);
     }
   };
-
+  
   const clearFormFields = () => {
     setName("");
     setImage("");
