@@ -3,11 +3,11 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import Logo from './components/Logo';
-function Navbar() {
+import Logout from './components/Logout';
+function Navbar({cartCount}) {
 const[isDropdown ,setIsDropdown]=useState(false)
-const[isUserDropdown,setIsUserDropdown]=useState(false)
 
+const[isUserDropdown,setIsUserDropdown]=useState(false)
 function toggleDown(){
   setIsDropdown(!isDropdown)
 
@@ -17,13 +17,9 @@ function toggleUserDown(){
   setIsUserDropdown(!isUserDropdown)
 }
   return (
-
+    
      <nav>
         <ul className="navbar">
-        <div className='logo-name'>
-        <Logo/>
-        <h1>Quickpick</h1>
-      </div>
           <li>
           <a href="#">Home</a>
           </li>
@@ -44,6 +40,8 @@ function toggleUserDown(){
           </li>
           <li>
             <a href="#cart"><FaCartShopping /></a>
+            <span className="cart-count-badge">{cartCount}</span>
+            
           </li>
           <li className="navbar-user">
             <FaUserAlt onClick={toggleUserDown} />
@@ -58,6 +56,7 @@ function toggleUserDown(){
           </li>
         </ul>
       </nav>
+   
   )
   }
   export  default Navbar

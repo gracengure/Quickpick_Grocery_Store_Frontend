@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import SearchBar from "./components/SearchBar";
 import CreateProduct from './components/CreateProduct';
 
-import React ,{ useState }from 'react';
-import Navbar from './Navbar';
 function Home() {
- 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <>
     <div className="home-container">
-    <Navbar/>
       <div className='search'>
         <SearchBar onSearch={handleSearch} />
       </div>
@@ -17,8 +19,6 @@ function Home() {
           <CreateProduct/>
     </>
 
-      
-      
   );
 }
 
