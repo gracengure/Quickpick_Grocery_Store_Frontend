@@ -17,7 +17,7 @@ const UserProfile = () => {
                 .email('Invalid email address')
                 .required('Required'),
             role: Yup.string()
-                .oneOf(['Admin', 'User', 'Guest'], 'Invalid role')
+                .oneOf(['Admin', 'Customer'], 'Invalid role')
                 .required('Required'),
         }),
         onSubmit: values => {
@@ -70,8 +70,7 @@ const UserProfile = () => {
                             >
                                 <option value="" label="Select role" />
                                 <option value="Admin" label="Admin" />
-                                <option value="User" label="User" />
-                                <option value="Guest" label="Guest" />
+                                <option value="Customer" label="Customer" />
                             </select>
                             {formik.touched.role && formik.errors.role ? (
                                 <div className="error">{formik.errors.role}</div>
@@ -91,4 +90,5 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
 
