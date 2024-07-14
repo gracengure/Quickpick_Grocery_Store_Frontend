@@ -78,6 +78,7 @@ const SignInForm = ({ signInWithEmail, signInWithPhone, handleClose }) => {
         console.log(result)
         localStorage.setItem('access_token', result.token);
         localStorage.setItem('role', result.role);
+        localStorage.setItem('id', result.id);
         setSuccessMessage('User signed in successfully!');
         setTimeout(() => {
           navigate('/', { replace: true });
