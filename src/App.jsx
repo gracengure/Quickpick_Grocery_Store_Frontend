@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Home from "./Home";
@@ -6,6 +7,7 @@ import Contact from "./Contact";
 import About from "./About";
 import Products from "./components/Products";
 import SearchBar from "./components/SearchBar";
+import CartModal from "./components/cart";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -14,6 +16,7 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ function App() {
       })
       .then(data => {
         setProducts(data);
-        setFilteredProducts(data); // Initialize filtered products with all products
+        setFilteredProducts(data); 
       })
       .catch(error => {
         console.error('Fetch error:', error);
@@ -37,7 +40,6 @@ function App() {
       });
   }, []);
 
-  // Function to filter products based on search criteria
   const handleSearch = (nameCriteria) => {
     const filteredProducts = products.filter(product =>
       product.name.toLowerCase().includes(nameCriteria.toLowerCase())
@@ -45,7 +47,6 @@ function App() {
     setFilteredProducts(filteredProducts);
   };
 
-  // Function to add a product to the cart and update stock
   const addToCart = (productId) => {
     const product = products.find(p => p.id === productId);
 
@@ -61,20 +62,70 @@ function App() {
         setCartItems([...cartItems, { ...product, quantity: 1 }]);
       }
 
-      // Decrease stock
       const updatedProducts = products.map(p =>
         p.id === productId ? { ...p, stock_quantity: p.stock_quantity - 1 } : p
       );
       setProducts(updatedProducts);
-      setFilteredProducts(updatedProducts); // Update filtered products as well
+      setFilteredProducts(updatedProducts);
     }
   };
 
-  // Update cart count whenever cart items change
+  const removeFromCart = (productId) => {
+    const updatedCart = cartItems.filter(item => item.id !== productId);
+    setCartItems(updatedCart);
+
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      const updatedProducts = products.map(p =>
+        p.id === productId ? { ...p, stock_quantity: p.stock_quantity + 1 } : p
+      );
+      setProducts(updatedProducts);
+      setFilteredProducts(updatedProducts);
+    }
+  };
+
   useEffect(() => {
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
     setCartCount(totalItems);
   }, [cartItems]);
+
+  const handleCartIconClick = () => {
+    setIsCartModalOpen(true);
+  };
+
+  const handleCloseCartModal = () => {
+    setIsCartModalOpen(false);
+  };
+
+  const handleCheckout = () => {
+    const orderData = {
+      user_id: localStorage.getItem('id'), 
+      total_price: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    };
+
+    fetch('http://127.0.0.1:5000/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderData),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to create order');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Order created successfully:', data);
+        setIsCartModalOpen(false); 
+        setCartItems([]); 
+      })
+      .catch(error => {
+        console.error('Error creating order:', error);
+        // Handle error cases
+      });
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -83,7 +134,7 @@ function App() {
   return (
     <>
       <Home />
-      <Navbar cartCount={cartCount} />
+      <Navbar cartCount={cartCount} onCartIconClick={handleCartIconClick} />
       <SearchBar products={products} handleSearch={handleSearch} />
       <Products
         products={filteredProducts}
@@ -93,6 +144,13 @@ function App() {
       />
       <About />
       <Contact />
+      <CartModal
+        isOpen={isCartModalOpen}
+        onClose={handleCloseCartModal}
+        cartItems={cartItems}
+        removeFromCart={removeFromCart}
+        handleCheckout={handleCheckout}
+      />
     </>
   );
 }

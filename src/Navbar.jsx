@@ -1,10 +1,11 @@
+// Navbar.js
 import React, { useState } from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-function Navbar({ cartCount }) {
+function Navbar({ cartCount, onCartIconClick }) {
   const [isDropdown, setIsDropdown] = useState(false);
   const [isUserDropdown, setIsUserDropdown] = useState(false);
  
@@ -50,7 +51,7 @@ function Navbar({ cartCount }) {
           <a href="#contact">Contact</a>
         </li>
         <li>
-          <Link to="/cart"><FaCartShopping /></Link>
+          <FaCartShopping onClick={onCartIconClick} />
           <span className="cart-count-badge">{cartCount}</span>
         </li>
         <li className="navbar-user">
