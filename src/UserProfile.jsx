@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const UserProfile = () => {
+const UserProfile = ({ user }) => {
+    const [initialValues, setInitialValues] = useState({
+        fullName: '',
+        email: '',
+        role: '',
+    });
+
+    useEffect(() => {
+        if (user) {
+            setInitialValues({
+                fullName: user.fullName || '',
+                email: user.email || '',
+                role: user.role || '',
+            });
+        }
+    }, [user]);
+
     const formik = useFormik({
-        initialValues: {
-            fullName: '',
-            email: '',
-            role: '',
-        },
+        initialValues: initialValues,
         validationSchema: Yup.object({
             fullName: Yup.string()
                 .max(50, 'Must be 50 characters or less')
@@ -22,6 +34,9 @@ const UserProfile = () => {
         }),
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            // Example of submitting form data to backend
+            // Replace with actual submission logic
+            // submitForm(values);
         },
     });
 
@@ -90,5 +105,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-
-
