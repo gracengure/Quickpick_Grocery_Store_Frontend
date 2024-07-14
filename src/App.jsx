@@ -134,7 +134,7 @@ function App() {
   return (
     <>
       <Home  products={products} handleSearch={handleSearch}/>
-      <Navbar cartCount={cartCount} />
+      <Navbar cartCount={cartCount} onCartIconClick={handleCartIconClick} />
       
       <Products
         products={filteredProducts}
