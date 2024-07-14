@@ -32,13 +32,17 @@ function ProductSpecs() {
   }, [productId]);
 
   const handleDelete = () => {
+    const token = localStorage.getItem('access_token'); 
     fetch(`http://127.0.0.1:5000/products/${productId}`, {
       method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${token}`, 
+      },
     })
       .then((response) => {
         if (response.ok) {
           console.log("Product deleted successfully");
-          window.location.href = "/"; // Redirect to home page or another appropriate page
+          window.location.href = "/"; 
         } else {
           throw new Error("Failed to delete product");
         }
@@ -46,7 +50,7 @@ function ProductSpecs() {
       .catch((error) => {
         console.error("Error deleting product:", error);
       });
-  };
+  };  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,6 +85,9 @@ function ProductSpecs() {
     window.history.back();
   };
 
+  // Check if user is an admin
+  const isAdmin = localStorage.getItem('role') === 'admin'; // Example role check
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -114,7 +121,6 @@ function ProductSpecs() {
             </div>
             <br></br>
             <div>
-              
               <label>Category:</label>
               <br></br>
               <input
@@ -126,9 +132,7 @@ function ProductSpecs() {
             </div>
             <br></br>
             <div>
-              <label>Stock Quantity:
-                
-              </label>
+              <label>Stock Quantity:</label>
               <br></br>
               <input
                 type="number"
@@ -187,12 +191,16 @@ function ProductSpecs() {
             <span className="spec-label">Supplier:</span>
             <span className="spec-value">{product.supplier}</span>
           </div>
-          <button className="edit-btn" onClick={() => setIsEditing(true)}>
-            Edit Product
-          </button>
-          <button className="delete-btn" onClick={handleDelete}>
-            DELETE PRODUCT
-          </button>
+          {isAdmin && (
+            <div>
+              <button className="edit-btn" onClick={() => setIsEditing(true)}>
+                Edit Product
+              </button>
+              <button className="delete-btn" onClick={handleDelete}>
+                DELETE PRODUCT
+              </button>
+            </div>
+          )}
           <button className="go-back-btn" onClick={goBack}>
             GO BACK
           </button>

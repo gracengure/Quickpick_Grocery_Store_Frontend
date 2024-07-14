@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
@@ -12,7 +12,19 @@ function CreateProduct() {
   const [description, setDescription] = useState("");
   const [supplier, setSupplier] = useState("");
   const [products, setProducts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isAdmin, setIsAdmin] = useState(false); // State to track admin role
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is logged in (example: check localStorage, auth tokens, etc.)
+    const userLoggedIn = localStorage.getItem('access_token') !== null; // Example check
+    setIsLoggedIn(userLoggedIn);
+
+    // Check if user is admin (example: check role in localStorage)
+    const userIsAdmin = localStorage.getItem('role') === 'admin'; // Example role check
+    setIsAdmin(userIsAdmin);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,33 +55,41 @@ function CreateProduct() {
       setProducts([...products, formData]);
       navigate("/");
 
-      setName("");
-      setImage("");
-      setPrice("");
-      setCategory("");
-      setStockQuantity("");
-      setDescription("");
-      setSupplier("");
+      // Clear form fields after submission
+      clearFormFields();
     } catch (error) {
       console.error("Error creating product:", error.message);
     }
   };
 
+  const clearFormFields = () => {
+    setName("");
+    setImage("");
+    setPrice("");
+    setCategory("");
+    setStockQuantity("");
+    setDescription("");
+    setSupplier("");
+  };
+
   return (
     <div className="create-product">
-      <button
-        onClick={() => setShowForm(!showForm)}
-        style={{
-          textAlign: "center",
-          height: "34px",
-          color: "white",
-          backgroundColor: "green",
-          borderRadius: "5px",
-          border: "transparent",
-        }}
-      >
-        {showForm ? "Hide Form" : "Add Product"}
-      </button>
+      {isLoggedIn && isAdmin && (
+        <button
+          onClick={() => setShowForm(!showForm)}
+          style={{
+            textAlign: "center",
+            height: "34px",
+            color: "white",
+            backgroundColor: "green",
+            borderRadius: "5px",
+            border: "transparent",
+            marginBottom: "10px", // Add some space below the button
+          }}
+        >
+          {showForm ? "Hide Form" : "Add Product"}
+        </button>
+      )}
 
       {showForm && (
         <div>
@@ -83,6 +103,7 @@ function CreateProduct() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -91,6 +112,7 @@ function CreateProduct() {
                     type="text"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -99,6 +121,7 @@ function CreateProduct() {
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -107,6 +130,7 @@ function CreateProduct() {
                     type="text"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -115,6 +139,7 @@ function CreateProduct() {
                     type="number"
                     value={stockQuantity}
                     onChange={(e) => setStockQuantity(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -122,6 +147,7 @@ function CreateProduct() {
                   <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    required
                   />
                 </label>
                 <label>
@@ -130,6 +156,7 @@ function CreateProduct() {
                     type="text"
                     value={supplier}
                     onChange={(e) => setSupplier(e.target.value)}
+                    required
                   />
                 </label>
               </div>
@@ -143,7 +170,7 @@ function CreateProduct() {
         {products.map((product, index) => (
           <div key={index} className="card">
             <h2 className="product-name">{product.name}</h2>
-            <img className="product-img" src={product.image_url} alt={product.name} />
+            <img className="product-img" src={product.image} alt={product.name} />
             <div className="product-details">
               <p>Category: {product.category}</p>
               <p>Price: ${product.price}</p>
