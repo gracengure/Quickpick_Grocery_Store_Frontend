@@ -121,6 +121,9 @@ const SignInForm = ({ signInWithEmail, signInWithPhone, handleClose }) => {
                     {passwordVisible ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
+              
+              
+              
               )
             }}
           />
