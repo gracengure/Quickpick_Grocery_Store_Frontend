@@ -32,13 +32,17 @@ function ProductSpecs() {
   }, [productId]);
 
   const handleDelete = () => {
+    const token = localStorage.getItem('access_token'); 
     fetch(`http://127.0.0.1:5000/products/${productId}`, {
       method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${token}`, 
+      },
     })
       .then((response) => {
         if (response.ok) {
           console.log("Product deleted successfully");
-          window.location.href = "/"; // Redirect to home page or another appropriate page
+          window.location.href = "/"; 
         } else {
           throw new Error("Failed to delete product");
         }
@@ -46,7 +50,7 @@ function ProductSpecs() {
       .catch((error) => {
         console.error("Error deleting product:", error);
       });
-  };
+  };  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,9 +81,12 @@ function ProductSpecs() {
       });
   };
 
+  
   const goBack = () => {
     window.history.back();
   };
+// Check if user is an admin
+const isAdmin = localStorage.getItem('role') === 'admin'; // Example role check
 
   if (!product) {
     return <div>Loading...</div>;
@@ -93,7 +100,7 @@ function ProductSpecs() {
           <form onSubmit={handleUpdate}>
             <div>
               <label>Name:</label>
-              <br></br>
+              <br />
               <input
                 type="text"
                 name="name"
@@ -101,10 +108,10 @@ function ProductSpecs() {
                 onChange={handleChange}
               />
             </div>
-            <br></br>
+            <br />
             <div>
               <label>Price:</label>
-              <br></br>
+              <br />
               <input
                 type="number"
                 name="price"
@@ -112,11 +119,10 @@ function ProductSpecs() {
                 onChange={handleChange}
               />
             </div>
-            <br></br>
+            <br />
             <div>
-              
               <label>Category:</label>
-              <br></br>
+              <br />
               <input
                 type="text"
                 name="category"
@@ -124,12 +130,10 @@ function ProductSpecs() {
                 onChange={handleChange}
               />
             </div>
-            <br></br>
+            <br />
             <div>
-              <label>Stock Quantity:
-                
-              </label>
-              <br></br>
+              <label>Stock Quantity:</label>
+              <br />
               <input
                 type="number"
                 name="stock_quantity"
@@ -137,10 +141,10 @@ function ProductSpecs() {
                 onChange={handleChange}
               />
             </div>
-            <br></br>
+            <br />
             <div>
               <label>Description:</label>
-              <br></br>
+              <br />
               <textarea
                 name="description"
                 value={formData.description}
@@ -149,7 +153,7 @@ function ProductSpecs() {
             </div>
             <div>
               <label>Supplier:</label>
-              <br></br>
+              <br />
               <input
                 type="text"
                 name="supplier"
@@ -157,45 +161,51 @@ function ProductSpecs() {
                 onChange={handleChange}
               />
             </div>
-            <br></br>
+            <br />
             <button type="button" onClick={handleUpdate}>Update Product</button>
           </form>
-          <br></br>
+          <br />
           <button onClick={() => setIsEditing(false)}>Cancel</button>
         </div>
       ) : (
-        <div className="product-details">
-          <h2 className="product-name">{product.name}</h2>
+        <div className="product-specs-details">
           <img src={product.image_url} alt={product.name} className="product-image" />
-          <div className="property-spec">
-            <span className="spec-label">Description:</span>
-            <span className="spec-value">{product.description}</span>
+          <div className="details-container">
+            <h2 className="product-name">{product.name}</h2>
+            <div className="property-spec">
+              <span className="spec-label">Description:</span>
+              <span className="spec-value">{product.description}</span>
+            </div>
+            <div className="property-spec">
+              <span className="spec-label">Category:</span>
+              <span className="spec-value">{product.category}</span>
+            </div>
+            <div className="property-spec">
+              <span className="spec-label">Price:</span>
+              <span className="spec-value">${product.price}</span>
+            </div>
+            <div className="property-spec">
+              <span className="spec-label">Stock Quantity:</span>
+              <span className="spec-value">{product.stock_quantity}</span>
+            </div>
+            <div className="property-spec">
+              <span className="spec-label">Supplier:</span>
+              <span className="spec-value">{product.supplier}</span>
+            </div>
+            {isAdmin && (
+            <div>
+              <button className="edit-btn" onClick={() => setIsEditing(true)}>
+                Edit Product
+              </button>
+              <button className="delete-btn" onClick={handleDelete}>
+                DELETE PRODUCT
+              </button>
+            </div>
+          )}
+            <button className="go-back-btn" onClick={goBack}>
+              GO BACK
+            </button>
           </div>
-          <div className="property-spec">
-            <span className="spec-label">Category:</span>
-            <span className="spec-value">{product.category}</span>
-          </div>
-          <div className="property-spec">
-            <span className="spec-label">Price:</span>
-            <span className="spec-value">${product.price}</span>
-          </div>
-          <div className="property-spec">
-            <span className="spec-label">Stock Quantity:</span>
-            <span className="spec-value">{product.stock_quantity}</span>
-          </div>
-          <div className="property-spec">
-            <span className="spec-label">Supplier:</span>
-            <span className="spec-value">{product.supplier}</span>
-          </div>
-          <button className="edit-btn" onClick={() => setIsEditing(true)}>
-            Edit Product
-          </button>
-          <button className="delete-btn" onClick={handleDelete}>
-            DELETE PRODUCT
-          </button>
-          <button className="go-back-btn" onClick={goBack}>
-            GO BACK
-          </button>
         </div>
       )}
     </div>

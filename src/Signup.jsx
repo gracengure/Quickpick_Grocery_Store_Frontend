@@ -4,7 +4,6 @@ import { Grid, Typography, TextField, Button, IconButton, Box, InputAdornment, S
 import { ArrowBack as ArrowBackIcon, Visibility, VisibilityOff } from '@mui/icons-material';
 import emailIcon from './Assets/email-icn.svg';
 import image from './Assets/home.png';
-// import { REACT_APP_API } from './components/constant';
 
 const styles = {
   signUpOption: {display: "flex",alignItems: 'center',padding: "15px",width: '250px',boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',cursor: "pointer"},
@@ -41,7 +40,6 @@ const SignUp = () => {
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Reset error when user starts typing in a field
     if (formErrors[e.target.name]) {
       setFormErrors({ ...formErrors, [e.target.name]: false });
     }
@@ -64,7 +62,6 @@ const SignUp = () => {
       return;
     }
   
-    // Check for empty required fields
     const requiredFields = ['name', 'email', 'role', 'phone_number', 'password', 'repeatPassword'];
     let hasError = false;
     const newFormErrors = { ...formErrors };
@@ -85,7 +82,6 @@ const SignUp = () => {
       return;
     }
   
-    // If no errors, proceed with form submission
     const user = {
       name: formData.name,
       password: formData.password,
@@ -105,11 +101,11 @@ const SignUp = () => {
     
       if (response.ok) {
         const result = await response.json();
+        localStorage.setItem('access_token', result.access_token);
         setSuccessMessage('User signed up successfully!');
         handleClose(); 
         navigate('/login', { replace: true });
       } else if (response.status === 409) {
-        // Email already exists
         setErrorMessage('Email already exists. Please use a different email.');
       } else {
         throw new Error(`Sign up failed: ${response.statusText}`);
