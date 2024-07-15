@@ -3,7 +3,7 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import Logo from './components/Logo.jsx';
+
 
 function Navbar({ cartCount, onCartIconClick }) {
   const [isDropdown, setIsDropdown] = useState(false);
@@ -28,11 +28,12 @@ function Navbar({ cartCount, onCartIconClick }) {
   }
 
   return (
-    <nav>
-      <ul className="navbar">
-        <li className="logo-container">
-          <Logo />
-        </li>
+    <nav className="navbar">
+      <div className="logo">
+        <img src="src/Assets/logo.jpeg" alt="Logo" />
+        <span className="store-name">QuickPick Groceries</span>
+      </div>
+      <ul className="navbar-links">
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -20,6 +20,7 @@
   align-items: center;
 }
 
+
 .navbar {
   position: fixed;
   left: 0;
@@ -37,79 +38,103 @@
   z-index: 2; 
 }
 
-.logo-container {
+.logo {
   display: flex;
   align-items: center;
+  
 }
 
 .logo img {
-  width: 80px;
-  height: auto;
+  height: 80px; /* Adjust this size as needed */
+  margin-right: 10px;
+  object-fit: contain;
 }
 
 .store-name {
-  font-size: 24px;
-  color: #fff;
+  font-size: 23px;
   font-weight: bold;
-  margin-left: 10px;
- 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  
-  transition: color 0.3s ease; 
+  color: white;
 }
-
 .store-name:hover {
   color: #ffeb3b;  
 }
+.navbar-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-right: 150px;
+  padding-left: 20px;
+  color: white;
+  font-size: 26px;
+}
+
+.navbar-links li {
+  margin-left: 25px;
+ 
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 26px;
+  padding-left: 20px;
+  
+}
 
 .navbar-categories {
-  font-size: 26px;
-  list-style: none;
+  position: relative;
 }
 
-.navbar li {
-  margin: 20px;
-}
-
-.navbar a {
-  color: rgb(232, 223, 223);
-  text-decoration: none;
-  font-size: 26px;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-.navbar .dropdown {
+.navbar-categories .dropdown {
   display: none;
   position: absolute;
   background-color: rgba(9, 9, 9, 0.7);
   min-width: 100px;
   z-index: 3;
+  list-style: none;
+  height: 130px;
+  
+  
 }
 
+.navbar-categories:hover .dropdown {
+  display: block;
+}
+
+.navbar-user {
+  position: relative;
+  
+}
+
+.navbar-user .dropdown {
+  display: none;
+  position: absolute;
+  background-color: rgba(9, 9, 9, 0.7);
+  min-width: 200px;
+  z-index: 3;
+  list-style: none;
+}
 .dropdown li {
   padding: 5px 5px;
   text-decoration: none;
   display: block;
   font-size: medium;
+
   text-align: left;
 }
-
-.navbar .dropdown a {
-  display: block;
-  padding: 5px 5px;
-}
-
-.navbar li:hover .dropdown {
+.navbar-user:hover .dropdown {
   display: block;
 }
 
-
-
-
-
-
+.cart-count-badge {
+  
+  color: white;
+  border-radius: 50%;
+  padding: 0 5px;
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+ 
 .home-image {
   display: none;
 }
@@ -283,14 +308,7 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding-top: 5px;
 }
-.navbar-user{
-  font-size: 26px;
-  list-style: none;
 
-}
-.navbar-user{
-  padding-right: 130px;}
- 
 .profile-container {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
@@ -372,7 +390,7 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.2); /* More transparent background */
+  background:rgba(255, 255, 255, 0.2); /* More transparent background */
   border-radius: 25px;
   padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
@@ -383,7 +401,7 @@
   width: 700px;
   padding: 17px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #050505;
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.2); /* More transparent input background */
   transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out,
