@@ -93,7 +93,7 @@ function CreateProduct() {
         </Button>
       )}
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal className="" show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Create Product</Modal.Title>
         </Modal.Header>
