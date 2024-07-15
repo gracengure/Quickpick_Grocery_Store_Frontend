@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -18,7 +16,6 @@ const SearchBar = ({ onSearch }) => {
       const response = await axios.get(
         `http://localhost:5000/search?q=${query}`
       );
-      setResults(response.data);
       onSearch(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -38,12 +35,6 @@ const SearchBar = ({ onSearch }) => {
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>
-      {}
-      <div className="results">
-        {results.map((item, index) => (
-          <div key={index}>{item.name}</div>
-        ))}
-      </div>
     </div>
   );
 };

@@ -4,9 +4,20 @@
   box-sizing: border-box;
 }
 :root {
-  background-color: rgb(59, 106, 6);
+  background-color: rgb(239, 240, 237);
 }
 
+.home-container {
+  position: relative;
+  height: 820px;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1660583341011-bf2752db6cd9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .navbar {
   position: fixed;
   left: 0;
@@ -74,7 +85,7 @@
 .contact-card {
   padding: 20px;
   margin: 20px;
-  background-color: rgb(59, 106, 6);
+  background-color: rgb(234, 237, 230);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -157,7 +168,7 @@
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: rgb(59, 106, 6);
+  background-color: rgb(234, 237, 230);
   color: #333;
   display: flex;
   justify-content: center;
@@ -181,7 +192,7 @@
 }
 
 .image-container {
-  background-image: url("");
+  background-image: url("https://steemitimages.com/640x0/https://www.arel.ir/uploads/myimages/1397/8/miveforoshi/miveforoshi%20(5).jpg");
   background-size: cover;
   background-position: center;
   width: 50%;
@@ -192,27 +203,142 @@
   width: 50%;
   padding: 2rem;
 }
-https: ; //steemitimages.com/640x0/https://www.arel.ir/uploads/myimages/1397/8/miveforoshi/miveforoshi%20(5).jpg
 
-body,
-html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
+.product-container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 25px;
+  margin-left: 140px;
+  margin-right: 100px;
+}
+.product-card {
+  object-fit: contain;
+  width: 250px; /* Increased width */
+  height: 350px; /* Increased height */
+  border: 1px solid grey;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-color: #f0f0f0;
+  margin-bottom: 20px; /* Added margin for spacing between cards */
 }
 
-.container {
-  width: 100%;
+.product-card:hover {
+  transform: scale(1.1); /* Scale the card to 50% of its original size */
+}
+
+.product-name {
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.product-img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  padding-top: 10px;
+  padding-left: 2px;
+  padding-right: 4px;
+}
+.product-details {
+  text-align: center;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding-top: 5px;
+}
+.navbar-user {
+  font-size: 26px;
+  list-style: none;
+}
+.navbar-user {
+  padding-right: 130px;
+}
+
+.profile-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1660583341011-bf2752db6cd9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center;
-  position: relative;
+}
+
+.profile-content {
+  display: flex;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgb(192, 252, 124);
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+}
+
+.profile-form-container,
+.profile-details-container {
+  width: 50%;
+  padding: 2rem;
+  background-color: rgb(237, 248, 240);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form h2 {
+  margin-bottom: 1rem;
+}
+
+.profile-form label {
+  margin-bottom: 0.5rem;
+}
+
+.profile-form input {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(155, 250, 46);
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: rgb(146, 219, 63);
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.profile-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.profile-image {
+  width: 300px;
+  height: 300px;
+  margin-top: 30px;
+  border-radius: 50%;
+}
 .search-bar {
   display: flex;
   align-items: center;
@@ -248,11 +374,22 @@ html {
   border-radius: 25px;
   cursor: pointer;
   margin-left: 10px;
-  .search-bar button:hover {
-    background-color: rgba(69, 160, 73, 0.8);
-  }
+}
+.search-bar button:hover {
+  background-color: rgba(69, 160, 73, 0.8);
+}
 
-  .search-bar button .fa-search {
-    font-size: 16px;
-  }
+.search-bar button:hover {
+  background-color: rgba(69, 160, 73, 0.8); /* Darker green with transparency */
+}
+
+.search-bar button .fa-search {
+  font-size: 16px;
+}
+.search {
+  width: 100%;
+  max-width: 2px; /* Adjust the max-width as needed */
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: center;
 }
