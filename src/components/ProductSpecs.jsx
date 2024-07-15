@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -61,10 +62,12 @@ function ProductSpecs() {
   };
 
   const handleUpdate = () => {
+    const token = localStorage.getItem('access_token');
     fetch(`http://127.0.0.1:5000/products/${productId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(formData),
     })
@@ -80,6 +83,7 @@ function ProductSpecs() {
         console.error("Error updating product:", error);
       });
   };
+  
 
   
   const goBack = () => {

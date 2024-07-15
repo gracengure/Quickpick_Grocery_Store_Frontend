@@ -1,16 +1,14 @@
 import React from 'react';
-
+import SearchBar from './components/SearchBar';
 import CreateProduct from './components/CreateProduct';
 
-function Home() {
+function Home({products,handleSearch}) {
   
 
   return (
     <>
     <div className="home-container">
-      {/* <div className='search'>
-        <SearchBar onSearch={handleSearch} />
-      </div> */}
+    <SearchBar products={products} handleSearch={handleSearch} />
           </div>
           <CreateProduct/>
     </>
