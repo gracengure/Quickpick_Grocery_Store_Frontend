@@ -1,14 +1,14 @@
-// Navbar.js
 import React, { useState } from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import Logo from './components/Logo.jsx';
 
 function Navbar({ cartCount, onCartIconClick }) {
   const [isDropdown, setIsDropdown] = useState(false);
   const [isUserDropdown, setIsUserDropdown] = useState(false);
- 
+
   function toggleDown() {
     setIsDropdown(!isDropdown);
   }
@@ -16,20 +16,23 @@ function Navbar({ cartCount, onCartIconClick }) {
   function toggleUserDown() {
     setIsUserDropdown(!isUserDropdown);
   }
+
   function handleSignOut() {
-    console.log('Signing out...'); // Check if function is being called
+    console.log('Signing out...');
     localStorage.removeItem('access_token');
     localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('role');
-    
-    // Simulate the redirection for debugging purpose
-    console.log('Redirecting to login page...'); // Check if this log appears
-    history.push('/login'); // Navigate to the login page after sign-out
+    console.log('Redirecting to login page...');
+    history.push('/login');
   }
+
   return (
     <nav>
       <ul className="navbar">
+        <li className="logo-container">
+          <Logo />
+        </li>
         <li>
           <Link to="/">Home</Link>
         </li>
