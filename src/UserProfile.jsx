@@ -1,31 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const UserProfile = () => {
+const UserProfile = ({ user }) => {
+    const [initialValues, setInitialValues] = useState({
+        fullName: '',
+        email: '',
+        role: '',
+    });
+
+    useEffect(() => {
+        if (user) {
+            setInitialValues({
+                fullName: user.fullName || '',
+                email: user.email || '',
+                role: user.role || '',
+            });
+        }
+    }, [user]);
+
     const formik = useFormik({
-        initialValues: {
-            username: '',
-            email: '',
-            password: '',
-            repeatPassword: '',
-        },
+        initialValues: initialValues,
         validationSchema: Yup.object({
-            username: Yup.string()
-                .max(15, 'Must be 15 characters or less')
+            fullName: Yup.string()
+                .max(50, 'Must be 50 characters or less')
                 .required('Required'),
             email: Yup.string()
                 .email('Invalid email address')
                 .required('Required'),
-            password: Yup.string()
-                .min(6, 'Must be at least 6 characters')
-                .required('Required'),
-            repeatPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Passwords must match')
+            role: Yup.string()
+                .oneOf(['Admin', 'Customer'], 'Invalid role')
                 .required('Required'),
         }),
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            // Example of submitting form data to backend
+            // Replace with actual submission logic
+            // submitForm(values);
         },
     });
 
@@ -36,22 +47,22 @@ const UserProfile = () => {
                     <form className="profile-form" onSubmit={formik.handleSubmit}>
                         <h2>User Profile</h2>
                         <label>
-                            Username:
-                            <br></br>
+                            Full Name:
+                            <br />
                             <input
                                 type="text"
-                                name="username"
+                                name="fullName"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.username}
+                                value={formik.values.fullName}
                             />
-                            {formik.touched.username && formik.errors.username ? (
-                                <div className="error">{formik.errors.username}</div>
+                            {formik.touched.fullName && formik.errors.fullName ? (
+                                <div className="error">{formik.errors.fullName}</div>
                             ) : null}
                         </label>
                         <label>
                             Email:
-                            <br></br>
+                            <br />
                             <input
                                 type="email"
                                 name="email"
@@ -64,31 +75,20 @@ const UserProfile = () => {
                             ) : null}
                         </label>
                         <label>
-                            Password:
-                            <br></br>
-                            <input
-                                type="password"
-                                name="password"
+                            Role:
+                            <br />
+                            <select
+                                name="role"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.password}
-                            />
-                            {formik.touched.password && formik.errors.password ? (
-                                <div className="error">{formik.errors.password}</div>
-                            ) : null}
-                        </label>
-                        <label>
-                            Repeat Password:
-                            <br></br>
-                            <input
-                                type="password"
-                                name="repeatPassword"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.repeatPassword}
-                            />
-                            {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
-                                <div className="error">{formik.errors.repeatPassword}</div>
+                                value={formik.values.role}
+                            >
+                                <option value="" label="Select role" />
+                                <option value="Admin" label="Admin" />
+                                <option value="Customer" label="Customer" />
+                            </select>
+                            {formik.touched.role && formik.errors.role ? (
+                                <div className="error">{formik.errors.role}</div>
                             ) : null}
                         </label>
                         <button type="submit">Save Changes</button>
@@ -98,9 +98,9 @@ const UserProfile = () => {
                     <div className="profile-image-container">
                         <img src="https://i.pinimg.com/564x/20/05/e2/2005e27a39fa5f6d97b2e0a95233b2be.jpg" alt="Profile" className="profile-image" />
                     </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
