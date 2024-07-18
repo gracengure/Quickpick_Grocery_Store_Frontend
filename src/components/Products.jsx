@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Products = ({ products, addToCart, isLoggedIn, navigate }) => {
   const handleAddToCart = (product) => {
     if (!isLoggedIn) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
     addToCart(product.id);
@@ -12,13 +12,17 @@ const Products = ({ products, addToCart, isLoggedIn, navigate }) => {
 
   return (
     <div className="product-container">
-      {products.map(product => (
+      {products.map((product) => (
         <div key={product.id} className="product-card">
-          <h3 className='product-name'>{product.name}</h3>
+          <h3 className="product-name">{product.name}</h3>
           <Link to={`/product/${product.id}`}>
-            <img className="product-img" src={product.image_url} alt={product.name} />
+            <img
+              className="product-img"
+              src={product.image_url}
+              alt={product.name}
+            />
           </Link>
-          <div className='product-details'>
+          <div className="product-details">
             <p>{product.category}</p>
             <p>${product.price}</p>
             <p>In Stock: {product.stock_quantity}</p>
@@ -30,7 +34,9 @@ const Products = ({ products, addToCart, isLoggedIn, navigate }) => {
                 {product.stock_quantity > 0 ? "Add to Cart" : "Out of Stock"}
               </button>
             ) : (
-              <p>Please <Link to="/login">log in</Link> to add to cart</p>
+              <p>
+                Please <Link to="/login">log in</Link> to add to cart
+              </p>
             )}
           </div>
         </div>

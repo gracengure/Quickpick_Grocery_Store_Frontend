@@ -79,16 +79,20 @@ function CreateProduct() {
   return (
     <div className="create-product">
       {isLoggedIn && isAdmin && (
-        <Button variant="success"style={{
-          textAlign: "center",
-          height: "34px",
-          color: "white",
-          width:"100px",
-          backgroundColor: "green",
-          borderRadius: "5px",
-          border: "transparent",
-          marginBottom: "10px", // Add some space below the button
-        }} onClick={() => setShowModal(true)}>
+        <Button
+          variant="success"
+          style={{
+            textAlign: "center",
+            height: "34px",
+            color: "white",
+            width: "100px",
+            backgroundColor: "green",
+            borderRadius: "5px",
+            border: "transparent",
+            marginBottom: "10px", // Add some space below the button
+          }}
+          onClick={() => setShowModal(true)}
+        >
           Add Product
         </Button>
       )}

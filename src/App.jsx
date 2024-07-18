@@ -1,6 +1,6 @@
 // App.jsx
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Contact from "./Contact";
@@ -16,53 +16,55 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false); 
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userLoggedIn = localStorage.getItem('access_token') !== null;
+    const userLoggedIn = localStorage.getItem("access_token") !== null;
     setIsLoggedIn(userLoggedIn);
 
-    fetch('http://127.0.0.1:5000/products')
-      .then(response => {
+    fetch("http://127.0.0.1:5000/products")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setProducts(data);
-        setFilteredProducts(data); 
+        setFilteredProducts(data);
       })
-      .catch(error => {
-        console.error('Fetch error:', error);
+      .catch((error) => {
+        console.error("Fetch error:", error);
         setError(error.message);
       });
   }, []);
 
   const handleSearch = (nameCriteria) => {
-    const filteredProducts = products.filter(product =>
+    const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(nameCriteria.toLowerCase())
     );
     setFilteredProducts(filteredProducts);
   };
 
   const addToCart = (productId) => {
-    const product = products.find(p => p.id === productId);
+    const product = products.find((p) => p.id === productId);
 
     if (product && product.stock_quantity > 0) {
-      const existingItem = cartItems.find(item => item.id === productId);
+      const existingItem = cartItems.find((item) => item.id === productId);
 
       if (existingItem) {
-        const updatedCart = cartItems.map(item =>
-          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        const updatedCart = cartItems.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
         setCartItems(updatedCart);
       } else {
         setCartItems([...cartItems, { ...product, quantity: 1 }]);
       }
 
-      const updatedProducts = products.map(p =>
+      const updatedProducts = products.map((p) =>
         p.id === productId ? { ...p, stock_quantity: p.stock_quantity - 1 } : p
       );
       setProducts(updatedProducts);
@@ -71,12 +73,12 @@ function App() {
   };
 
   const removeFromCart = (productId) => {
-    const updatedCart = cartItems.filter(item => item.id !== productId);
+    const updatedCart = cartItems.filter((item) => item.id !== productId);
     setCartItems(updatedCart);
 
-    const product = products.find(p => p.id === productId);
+    const product = products.find((p) => p.id === productId);
     if (product) {
-      const updatedProducts = products.map(p =>
+      const updatedProducts = products.map((p) =>
         p.id === productId ? { ...p, stock_quantity: p.stock_quantity + 1 } : p
       );
       setProducts(updatedProducts);
@@ -85,7 +87,10 @@ function App() {
   };
 
   useEffect(() => {
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = cartItems.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
     setCartCount(totalItems);
   }, [cartItems]);
 
@@ -99,30 +104,33 @@ function App() {
 
   const handleCheckout = () => {
     const orderData = {
-      user_id: localStorage.getItem('id'), 
-      total_price: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+      user_id: localStorage.getItem("id"),
+      total_price: cartItems.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      ),
     };
 
-    fetch('http://127.0.0.1:5000/orders', {
-      method: 'POST',
+    fetch("http://127.0.0.1:5000/orders", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(orderData),
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to create order');
+          throw new Error("Failed to create order");
         }
         return response.json();
       })
-      .then(data => {
-        console.log('Order created successfully:', data);
-        setIsCartModalOpen(false); 
-        setCartItems([]); 
+      .then((data) => {
+        console.log("Order created successfully:", data);
+        setIsCartModalOpen(false);
+        setCartItems([]);
       })
-      .catch(error => {
-        console.error('Error creating order:', error);
+      .catch((error) => {
+        console.error("Error creating order:", error);
         // Handle error cases
       });
   };
@@ -133,9 +141,9 @@ function App() {
 
   return (
     <>
-      <Home  products={products} handleSearch={handleSearch}/>
+      <Home products={products} handleSearch={handleSearch} />
       <Navbar cartCount={cartCount} onCartIconClick={handleCartIconClick} />
-      
+
       <Products
         products={filteredProducts}
         addToCart={addToCart}

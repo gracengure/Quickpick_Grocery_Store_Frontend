@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -7,12 +6,12 @@ function ProductSpecs() {
   const [product, setProduct] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    category: '',
-    stock_quantity: '',
-    description: '',
-    supplier: ''
+    name: "",
+    price: "",
+    category: "",
+    stock_quantity: "",
+    description: "",
+    supplier: "",
   });
 
   useEffect(() => {
@@ -26,24 +25,26 @@ function ProductSpecs() {
           category: data.category,
           stock_quantity: data.stock_quantity,
           description: data.description,
-          supplier: data.supplier
+          supplier: data.supplier,
         });
       })
-      .catch((error) => console.error("Error fetching product details:", error));
+      .catch((error) =>
+        console.error("Error fetching product details:", error)
+      );
   }, [productId]);
 
   const handleDelete = () => {
-    const token = localStorage.getItem('access_token'); 
+    const token = localStorage.getItem("access_token");
     fetch(`http://127.0.0.1:5000/products/${productId}`, {
       method: "DELETE",
       headers: {
-        'Authorization': `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
         if (response.ok) {
           console.log("Product deleted successfully");
-          window.location.href = "/"; 
+          window.location.href = "/";
         } else {
           throw new Error("Failed to delete product");
         }
@@ -51,7 +52,7 @@ function ProductSpecs() {
       .catch((error) => {
         console.error("Error deleting product:", error);
       });
-  };  
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,12 +63,12 @@ function ProductSpecs() {
   };
 
   const handleUpdate = () => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem("access_token");
     fetch(`http://127.0.0.1:5000/products/${productId}`, {
       method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     })
@@ -83,14 +84,12 @@ function ProductSpecs() {
         console.error("Error updating product:", error);
       });
   };
-  
 
-  
   const goBack = () => {
     window.history.back();
   };
-// Check if user is an admin
-const isAdmin = localStorage.getItem('role') === 'admin'; // Example role check
+  // Check if user is an admin
+  const isAdmin = localStorage.getItem("role") === "admin"; // Example role check
 
   if (!product) {
     return <div>Loading...</div>;
@@ -166,14 +165,20 @@ const isAdmin = localStorage.getItem('role') === 'admin'; // Example role check
               />
             </div>
             <br />
-            <button type="button" onClick={handleUpdate}>Update Product</button>
+            <button type="button" onClick={handleUpdate}>
+              Update Product
+            </button>
           </form>
           <br />
           <button onClick={() => setIsEditing(false)}>Cancel</button>
         </div>
       ) : (
         <div className="product-specs-details">
-          <img src={product.image_url} alt={product.name} className="product-image" />
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className="product-image"
+          />
           <div className="details-container">
             <h2 className="product-name">{product.name}</h2>
             <div className="property-spec">
@@ -197,15 +202,15 @@ const isAdmin = localStorage.getItem('role') === 'admin'; // Example role check
               <span className="spec-value">{product.supplier}</span>
             </div>
             {isAdmin && (
-            <div>
-              <button className="edit-btn" onClick={() => setIsEditing(true)}>
-                Edit Product
-              </button>
-              <button className="delete-btn" onClick={handleDelete}>
-                DELETE PRODUCT
-              </button>
-            </div>
-          )}
+              <div>
+                <button className="edit-btn" onClick={() => setIsEditing(true)}>
+                  Edit Product
+                </button>
+                <button className="delete-btn" onClick={handleDelete}>
+                  DELETE PRODUCT
+                </button>
+              </div>
+            )}
             <button className="go-back-btn" onClick={goBack}>
               GO BACK
             </button>

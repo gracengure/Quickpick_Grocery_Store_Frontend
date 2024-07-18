@@ -13,20 +13,16 @@ const Contact = () => {
       .matches(/^[A-Za-z ]*$/, "Name can only contain letters and spaces"),
     email: yup.string().email("Invalid email").required("Email is required"),
     message: yup
-    .string()
-    .required("Message is required")
-    .matches(
-       /^[A-Z].*$/,
-      "Message should start with a capital letter"
-    ),
-
+      .string()
+      .required("Message is required")
+      .matches(/^[A-Z].*$/, "Message should start with a capital letter"),
   });
 
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
-      message: ""
+      message: "",
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
@@ -52,7 +48,9 @@ const Contact = () => {
               onChange={formik.handleChange}
               required
             />
-            {formik.errors.name && <p className="error">{formik.errors.name}</p>}
+            {formik.errors.name && (
+              <p className="error">{formik.errors.name}</p>
+            )}
           </div>
           <div>
             <label htmlFor="email">Email:</label>
@@ -64,7 +62,9 @@ const Contact = () => {
               onChange={formik.handleChange}
               required
             />
-            {formik.errors.email && <p className="error">{formik.errors.email}</p>}
+            {formik.errors.email && (
+              <p className="error">{formik.errors.email}</p>
+            )}
           </div>
           <div>
             <label htmlFor="message">Message:</label>
@@ -75,23 +75,41 @@ const Contact = () => {
               onChange={formik.handleChange}
               required
             />
-            {formik.errors.message && <p className="error">{formik.errors.message}</p>}
+            {formik.errors.message && (
+              <p className="error">{formik.errors.message}</p>
+            )}
           </div>
           <button type="submit">Submit</button>
         </form>
       </div>
       <h2>Follow Us</h2>
       <div className="social-media-links">
-        <a href="https://www.instagram.com/your_username" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.instagram.com/your_username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaInstagramSquare />
         </a>
-        <a href="https://www.facebook.com/your_username" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.facebook.com/your_username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaFacebookSquare />
         </a>
-        <a href="https://t.me/your_username" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://t.me/your_username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <BiLogoTelegram />
         </a>
-        <a href="https://www.tiktok.com/@your_username" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.tiktok.com/@your_username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <AiFillTikTok />
         </a>
       </div>
@@ -100,4 +118,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

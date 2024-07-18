@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { FaTimes } from "react-icons/fa";
 
 function Snackbar({ message, onClose }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -18,7 +18,13 @@ function Snackbar({ message, onClose }) {
     isVisible && (
       <div className="snackbar">
         {message}
-        <button className="close-snackbar" onClick={() => { setIsVisible(false); onClose(); }}>
+        <button
+          className="close-snackbar"
+          onClick={() => {
+            setIsVisible(false);
+            onClose();
+          }}
+        >
           <FaTimes />
         </button>
       </div>

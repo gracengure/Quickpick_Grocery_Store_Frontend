@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function CategoryPage({addToCart}) {
+function CategoryPage() {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
 
@@ -15,23 +15,20 @@ function CategoryPage({addToCart}) {
     
     return (
         <div>
-            {/* <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1> */}
             <div className="product-container">
-      {products.map(product => (
-        <div key={product.id} className="product-card">
-         
-          <h3 className='product-name'>{product.name}</h3>
-          <img  className="product-img"src={product.image_url} alt={product.name} /> 
-          <div className='product-details'>
-          <p>{product.category}</p>
-          <p>${product.price}</p>
-          <p>In Stock: {product.stock_quantity}</p>
-          <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        </div>
-      ))}
-    </div>
-
+                {products.map(product => (
+                    <div key={product.id} className="product-card">
+                        <h3 className='product-name'>{product.name}</h3>
+                        <img className="product-img" src={product.image_url} alt={product.name} /> 
+                        <div className='product-details'>
+                            <p>{product.category}</p>
+                            <p>${product.price}</p>
+                            <p>In Stock: {product.stock_quantity}</p>
+                            
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
