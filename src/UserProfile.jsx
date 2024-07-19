@@ -20,6 +20,7 @@ const UserProfile = ({ user }) => {
     }, [user]);
 
     const formik = useFormik({
+        enableReinitialize: true,  // This line ensures formik reinitializes form values when initialValues change
         initialValues: initialValues,
         validationSchema: Yup.object({
             fullName: Yup.string()
